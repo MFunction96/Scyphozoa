@@ -17,11 +17,12 @@ steps:
     packageType: runtime
     performMultiLevelLookup: true
 
-- task: CmdLine@2
-  displayName: 'Install PNPM'
+- task: PowerShell@2
   inputs:
-    script: 'npm -g install pnpm'
-    workingDirectory: 'Scyphozoa\ClientApp'
+    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
+    showWarnings: true
+    pwsh: true
+    runScriptInSeparateScope: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
@@ -31,12 +32,6 @@ steps:
     feedsToUse: config
     nugetConfigPath: nuget.config 
     noCache: true
-
-- task: CmdLine@2
-  displayName: 'pnpm install'
-  inputs:
-    script: 'pnpm install'
-    workingDirectory: 'Scyphozoa\ClientApp'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
