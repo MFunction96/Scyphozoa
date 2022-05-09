@@ -7,7 +7,6 @@ pool: 'Azure Self-Host Pipeline'
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'Any CPU;x64;ARM64;ARM32;x86'
   buildConfiguration: 'Release'
 
 steps:
@@ -18,6 +17,12 @@ steps:
     packageType: runtime
     performMultiLevelLookup: true
 
+- task: CmdLine@2
+  displayName: 'Install PNPM'
+  inputs:
+    script: 'npm -g install pnpm'
+    workingDirectory: 'Scyphozoa\ClientApp'
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
@@ -26,6 +31,12 @@ steps:
     feedsToUse: config
     nugetConfigPath: nuget.config 
     noCache: true
+
+- task: CmdLine@2
+  displayName: 'pnpm install'
+  inputs:
+    script: 'pnpm install'
+    workingDirectory: 'Scyphozoa\ClientApp'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
