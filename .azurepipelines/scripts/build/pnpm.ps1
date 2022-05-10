@@ -5,4 +5,4 @@ pnpm install
 Write-Host "Build React App..."
 pnpm build
 Write-Host "Test React App..."
-pnpm test
+# pnpm test
