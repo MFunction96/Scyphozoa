@@ -1,10 +1,3 @@
-$oldpath = [System.Environment]::GetEnvironmentVariable('PATH','user')
-if ($oldpath -like "*AppData\Roaming\npm*")
-{
-    $newpath = "$oldpath;$env:appdata\npm"
-    [Environment]::SetEnvironmentVariable("PATH", "$newpath", "User")
-}
-
 Write-Host "Install pnpm..."
 npm -g install pnpm
 Write-Host "Restore packages..."
