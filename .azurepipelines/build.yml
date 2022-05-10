@@ -18,6 +18,7 @@ steps:
     performMultiLevelLookup: true
 
 - task: PowerShell@2
+  displayName: 'Build SPA'
   inputs:
     filePath: '.azurepipelines\scripts\build\pnpm.ps1'
     showWarnings: true
