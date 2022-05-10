@@ -8,6 +8,7 @@
 			"dom.iterable",
 			"es2021"
 		],
+		"outDir": "./build/",
 		"allowJs": false,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
@@ -19,8 +20,9 @@
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"noEmit": true,
-		"jsx": "react-jsx"
+		"noEmit": false,
+		"sourceMap": true,
+		"jsx": "react"
 	},
 	"include": [
 		"src"
