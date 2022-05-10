@@ -2,6 +2,8 @@ if ($env:Path -like "*AppData\Roaming\npm*")
 {
     $env:Path += ";$env:appdata\npm"
 }
+Write-Host "$env:appdata\npm"
+Get-ChildItem "$env:appdata\npm"
 Write-Host "Install pnpm..."
 npm -g install pnpm
 Write-Host "Restore packages..."
