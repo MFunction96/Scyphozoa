@@ -7,7 +7,6 @@ pool: 'Azure Self-Host Pipeline'
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'Any CPU;x64;ARM64;ARM32;x86'
   buildConfiguration: 'Release'
 
 steps:
@@ -17,6 +16,15 @@ steps:
     version: '6.0.x'
     packageType: runtime
     performMultiLevelLookup: true
+
+- task: PowerShell@2
+  displayName: 'Build SPA'
+  inputs:
+    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
+    workingDirectory: 'Scyphozoa\ClientApp'
+    showWarnings: true
+    pwsh: true
+    runScriptInSeparateScope: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
