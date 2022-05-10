@@ -21,6 +21,7 @@ steps:
   displayName: 'Build SPA'
   inputs:
     filePath: '.azurepipelines\scripts\build\pnpm.ps1'
+    workingDirectory: 'Scyphozoa\ClientApp'
     showWarnings: true
     pwsh: true
     runScriptInSeparateScope: true
