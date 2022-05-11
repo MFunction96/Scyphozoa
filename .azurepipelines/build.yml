@@ -17,15 +17,6 @@ steps:
     packageType: runtime
     performMultiLevelLookup: true
 
-- task: PowerShell@2
-  displayName: 'Build SPA'
-  inputs:
-    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
-    workingDirectory: 'Scyphozoa\ClientApp'
-    showWarnings: true
-    pwsh: true
-    runScriptInSeparateScope: true
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
@@ -34,6 +25,15 @@ steps:
     feedsToUse: config
     nugetConfigPath: nuget.config 
     noCache: true
+
+- task: PowerShell@2
+  displayName: 'Build SPA'
+  inputs:
+    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
+    workingDirectory: 'Scyphozoa\ClientApp'
+    showWarnings: true
+    pwsh: true
+    runScriptInSeparateScope: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
