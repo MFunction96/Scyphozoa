@@ -8,7 +8,7 @@
 			"dom.iterable",
 			"es2021"
 		],
-		"outDir": "./build/",
+		"outDir": "./dist/",
 		"allowJs": false,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
