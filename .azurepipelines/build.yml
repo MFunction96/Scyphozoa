@@ -26,6 +26,18 @@ steps:
     nugetConfigPath: nuget.config 
     noCache: true
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'tool restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Initial Create Database'
+  inputs:
+    command: 'custom'
+    projects: 'Scyphozoa'
+    custom: 'ef database update InitialCreate'
+
 - task: PowerShell@2
   displayName: 'Build SPA'
   inputs:
@@ -34,13 +46,6 @@ steps:
     showWarnings: true
     pwsh: true
     runScriptInSeparateScope: true
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'custom'
-    projects: 'Scyphozoa'
-    custom: 'ef database update InitialCreate'
-    workingDirectory: 'Scyphozoa'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
