@@ -32,18 +32,16 @@ steps:
     command: 'custom'
     arguments: 'restore'
     custom: 'tool'
-
-- task: DotNetCoreCLI@2
+- task: CmdLine@2
+  displayName: 'Set User Secrets'
   inputs:
-    command: 'custom'
-    custom: 'user-secrets'
-    arguments: 'set "Scyphozoa:ConnectionStrings:DefaultConnection" %DATABASEPWD% --project Scyphozoa'
+    script: 'dotnet user-secrets set "Scyphozoa:ConnectionStrings:DefaultConnection" %CONNECTIONSTRING% --project Scyphozoa'
 
 - task: DotNetCoreCLI@2
   displayName: 'Test Database Initilization'
   inputs:
     command: 'custom'
-    arguments: 'database update InitialCreate --project'
+    arguments: 'database update InitialCreate --project Scyphozoa'
     custom: 'ef'
 
 - task: PowerShell@2
