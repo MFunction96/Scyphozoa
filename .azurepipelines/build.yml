@@ -39,6 +39,8 @@ steps:
     showWarnings: true
     pwsh: true
     runScriptInSeparateScope: true
+  env:
+    CONNECTIONSTRING: $(ConnectionString)
     
 - task: DotNetCoreCLI@2
   displayName: 'Test Database Initilization'
