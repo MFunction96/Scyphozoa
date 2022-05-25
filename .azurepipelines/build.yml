@@ -32,11 +32,16 @@ steps:
     command: 'custom'
     arguments: 'restore'
     custom: 'tool'
-- task: CmdLine@2
+
+- task: PowerShell@2
   displayName: 'Set User Secrets'
   inputs:
-    script: 'dotnet user-secrets set "Scyphozoa:ConnectionStrings:DefaultConnection" %CONNECTIONSTRING% --project Scyphozoa'
-
+    targetType: 'inline'
+    script: 'dotnet user-secrets set "Scyphozoa:ConnectionStrings:DefaultConnection" ${env:CONNECTIONSTRING} --project Scyphozoa'
+    showWarnings: true
+    pwsh: true
+    runScriptInSeparateScope: true
+    
 - task: DotNetCoreCLI@2
   displayName: 'Test Database Initilization'
   inputs:
