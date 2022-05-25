@@ -36,6 +36,13 @@ steps:
     runScriptInSeparateScope: true
 
 - task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    projects: 'Scyphozoa'
+    custom: 'ef database update InitialCreate'
+    workingDirectory: 'Scyphozoa'
+
+- task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
   inputs:
     command: 'build'
