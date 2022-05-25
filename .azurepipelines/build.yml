@@ -37,7 +37,7 @@ steps:
   displayName: 'Set User Secrets'
   inputs:
     targetType: 'inline'
-    script: 'dotnet user-secrets set "Scyphozoa:ConnectionStrings:DefaultConnection" ${env:CONNECTIONSTRING} --project Scyphozoa'
+    script: 'dotnet user-secrets set "Scyphozoa:ConnectionStrings:DefaultConnection" "${env:CONNECTIONSTRING}" --project Scyphozoa'
     showWarnings: true
     pwsh: true
     runScriptInSeparateScope: true
