@@ -27,16 +27,19 @@ steps:
     noCache: true
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet tool restore'
   inputs:
     command: 'custom'
-    custom: 'tool restore'
+    arguments: 'restore'
+    custom: 'tool'
 
 - task: DotNetCoreCLI@2
   displayName: 'Initial Create Database'
   inputs:
     command: 'custom'
     projects: 'Scyphozoa'
-    custom: 'ef database update InitialCreate'
+    arguments: 'database update InitialCreate'
+    custom: 'ef'
 
 - task: PowerShell@2
   displayName: 'Build SPA'
