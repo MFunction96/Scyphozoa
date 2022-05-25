@@ -34,10 +34,8 @@ steps:
     custom: 'tool'
 
 - task: PowerShell@2
-  displayName: 'Set User Secrets'
   inputs:
-    targetType: 'inline'
-    script: 'dotnet user-secrets set "Scyphozoa:ConnectionStrings:DefaultConnection" "${env:CONNECTIONSTRING}" --project Scyphozoa'
+    filePath: '.azurepipelines\scripts\build\secret.ps1'
     showWarnings: true
     pwsh: true
     runScriptInSeparateScope: true
