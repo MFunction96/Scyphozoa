@@ -26,6 +26,13 @@ steps:
     nugetConfigPath: nuget.config 
     noCache: true
 
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet tool restore'
+  inputs:
+    command: 'custom'
+    arguments: 'restore'
+    custom: 'tool'
+
 - task: PowerShell@2
   displayName: 'Build SPA'
   inputs:
@@ -33,13 +40,28 @@ steps:
     workingDirectory: 'Scyphozoa\ClientApp'
     showWarnings: true
     pwsh: true
-    runScriptInSeparateScope: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
+
+- task: PowerShell@2
+  displayName: 'Set User Secerts'
+  inputs:
+    filePath: '.azurepipelines\scripts\build\secret.ps1'
+    showWarnings: true
+    pwsh: true
+  env:
+    CONNECTIONSTRING: $(ConnectionString)
+    
+- task: DotNetCoreCLI@2
+  displayName: 'Test Database Initilization'
+  inputs:
+    command: 'custom'
+    arguments: 'database update InitialCreate --project Scyphozoa'
+    custom: 'ef'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test $(buildConfiguration)'
