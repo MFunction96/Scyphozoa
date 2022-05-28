@@ -34,6 +34,20 @@ steps:
     custom: 'tool'
 
 - task: PowerShell@2
+  displayName: 'Build SPA'
+  inputs:
+    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
+    workingDirectory: 'Scyphozoa\ClientApp'
+    showWarnings: true
+    pwsh: true
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build $(buildConfiguration)'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: PowerShell@2
   displayName: 'Set User Secerts'
   inputs:
     filePath: '.azurepipelines\scripts\build\secret.ps1'
@@ -48,20 +62,6 @@ steps:
     command: 'custom'
     arguments: 'database update InitialCreate --project Scyphozoa'
     custom: 'ef'
-
-- task: PowerShell@2
-  displayName: 'Build SPA'
-  inputs:
-    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
-    workingDirectory: 'Scyphozoa\ClientApp'
-    showWarnings: true
-    pwsh: true
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build $(buildConfiguration)'
-  inputs:
-    command: 'build'
-    arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet test $(buildConfiguration)'
