@@ -34,11 +34,11 @@ steps:
     custom: 'tool'
 
 - task: PowerShell@2
+  displayName: 'Set User Secerts'
   inputs:
     filePath: '.azurepipelines\scripts\build\secret.ps1'
     showWarnings: true
     pwsh: true
-    runScriptInSeparateScope: true
   env:
     CONNECTIONSTRING: $(ConnectionString)
     
@@ -56,7 +56,6 @@ steps:
     workingDirectory: 'Scyphozoa\ClientApp'
     showWarnings: true
     pwsh: true
-    runScriptInSeparateScope: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build $(buildConfiguration)'
