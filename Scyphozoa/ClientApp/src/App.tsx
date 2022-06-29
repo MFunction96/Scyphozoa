@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import './App.css';
+import './App.scss';
 import 'rsuite/dist/rsuite.min.css';
 import Layout from "./Layout";
 import Home from './Home';
