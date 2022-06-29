@@ -1,11 +1,18 @@
 import React from "react";
+import {Container, Content, Footer, Header} from "rsuite";
 
 class Home extends React.Component {
 	render() {
 		return (
-			<div>
-				<h1>Hello World!</h1>
-			</div>
+			<Container>
+				<Header>
+					<h2>Page Title</h2>
+				</Header>
+				<Content>Content</Content>
+				<Footer>
+					<h4>Page Footer</h4>
+				</Footer>
+			</Container>
 		);
 	}
 }

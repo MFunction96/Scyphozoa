@@ -11,12 +11,12 @@ export declare interface LayoutProps {
 export default class Layout extends React.Component<LayoutProps> {
 	render() {
 		return (
-			<div>
-				<Container>
-					<Sidebar>
-						<Sidenav>
+			<div className="page">
+				<Container className="page">
+					<Sidebar className="page">
+						<Sidenav className="page">
 							<Sidenav.Header>
-								<h1>Sidenav Header</h1>
+								<h3>Sidenav Header</h3>
 							</Sidenav.Header>
 							<Sidenav.Body>
 								<Nav activeKey="1">
@@ -27,10 +27,9 @@ export default class Layout extends React.Component<LayoutProps> {
 							</Sidenav.Body>
 						</Sidenav>
 					</Sidebar>
-					<h1>
-						This is layout.
-					</h1>
-					<Outlet/>
+					<Container className="page">
+						<Outlet/>
+					</Container>
 				</Container>
 			</div>
 		);
