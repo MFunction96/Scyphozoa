@@ -1,0 +1,3 @@
+# Ignore auto-generation .css and .css.map files
+*.css
+*.css.map
