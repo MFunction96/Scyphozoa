@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: './src/Index.tsx',
+	entry: './src/Root.tsx',
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Output Management',
