@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: './src/index.tsx',
+	entry: './src/Root.tsx',
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Output Management',
@@ -35,6 +35,23 @@ module.exports = {
 			{
 				test: /\.xml$/i,
 				use: ['xml-loader']
+			},
+			{
+				test: /\.s[ac]ss$/i,
+				use: [
+					// Creates `style` nodes from JS strings
+					"style-loader",
+					// Translates CSS into CommonJS
+					"css-loader",
+					// Compiles Sass to CSS
+					{
+						loader: "sass-loader",
+						options: {
+							// Prefer `dart-sass`
+							implementation: require.resolve("sass"),
+						},
+					}
+				],
 			}
 		],
 	},
