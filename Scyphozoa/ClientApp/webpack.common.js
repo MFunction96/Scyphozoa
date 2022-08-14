@@ -1,13 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 	entry: './src/Root.tsx',
 	plugins: [
 		new HtmlWebpackPlugin({
-			title: 'Output Management',
+			title: 'MFBlog',
 			template: 'public/index.hbs'
 		}),
+		new webpack.DefinePlugin({
+			__VERSION__: JSON.stringify('1.0.0.' + parseInt((Date.now() / 1000).toString()))
+		})
 	],
 	module: {
 		rules: [
