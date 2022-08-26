@@ -10,13 +10,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Install .NET Core Runtime 6.x'
-  inputs:
-    version: '6.0.x'
-    packageType: runtime
-    performMultiLevelLookup: true
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
@@ -36,8 +29,8 @@ steps:
 - task: PowerShell@2
   displayName: 'Build SPA'
   inputs:
-    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
-    workingDirectory: 'Scyphozoa\ClientApp'
+    filePath: '.azurepipelines/scripts/build/pnpm.ps1'
+    workingDirectory: 'Scyphozoa/ClientApp'
     showWarnings: true
     pwsh: true
 
@@ -50,7 +43,7 @@ steps:
 - task: PowerShell@2
   displayName: 'Set User Secerts'
   inputs:
-    filePath: '.azurepipelines\scripts\build\secret.ps1'
+    filePath: '.azurepipelines/scripts/build/secret.ps1'
     showWarnings: true
     pwsh: true
   env:

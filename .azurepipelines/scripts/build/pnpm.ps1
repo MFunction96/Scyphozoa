@@ -1,9 +1,5 @@
-Write-Host "Install pnpm..."
-npm -g install pnpm
 Write-Host "Setup pnpm..."
 pnpm setup
-pnpm config set registry https://registry.npmmirror.com
-pnpm config set sass_binary_site https://registry.npmmirror.com/node-sass
 Write-Host "Restore packages..."
 pnpm install
 Write-Host "Build React App..."
