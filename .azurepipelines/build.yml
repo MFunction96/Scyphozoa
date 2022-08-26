@@ -36,8 +36,8 @@ steps:
 - task: PowerShell@2
   displayName: 'Build SPA'
   inputs:
-    filePath: '.azurepipelines\scripts\build\pnpm.ps1'
-    workingDirectory: 'Scyphozoa\ClientApp'
+    filePath: '.azurepipelines/scripts/build/pnpm.ps1'
+    workingDirectory: 'Scyphozoa/ClientApp'
     showWarnings: true
     pwsh: true
 
@@ -50,7 +50,7 @@ steps:
 - task: PowerShell@2
   displayName: 'Set User Secerts'
   inputs:
-    filePath: '.azurepipelines\scripts\build\secret.ps1'
+    filePath: '.azurepipelines/scripts/build/secret.ps1'
     showWarnings: true
     pwsh: true
   env:
