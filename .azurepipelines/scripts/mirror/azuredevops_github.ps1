@@ -20,7 +20,9 @@ param(
 
 $SrcUri = "https://$env:SRC_PAT@dev.azure.com/$Organization/$Project/_git/$Repository"
 $DesUri = "https://$env:DES_PAT@github.com/$DesRepo"
-$TmpDir = "$env:TMP/TMP_$Repository"
+$TmpFile = New-TemporaryFile
+$TmpFolder = $TmpFile.Directory
+$TmpDir = "$TmpFolder/TMP_$Repository"
 $WorkFolder = "$PSScriptRoot/../../.."
 
 try {
@@ -38,4 +40,5 @@ catch {
 finally {
     Set-Location $WorkFolder
     Remove-Item -Path $TmpDir -Recurse -Force
+    Remove-Item -Path $TmpFile.FullName -Force
 }
